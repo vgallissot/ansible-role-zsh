@@ -1,3 +1,7 @@
 ---
-user:
-  home: ~/
+
+zsh_omz_path: /usr/local/src/oh-my-zsh
+
+zsh_users:
+  - root
+  - vincent
