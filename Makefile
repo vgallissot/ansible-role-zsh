@@ -37,6 +37,7 @@ help:
 	@echo '    make test-docker		run "make test" in a docker container'
 	@echo '    make docker			launch a docker container'
 	@echo '    make role			apply role (test/example.yml)'
+	@echo '    make checkdiff		apply role (test/example.yml) with --check --diff options (READONLY)'
 	@echo '    make requirements		install python and ansible-galaxy requirements'
 	@echo ''
 	@echo ''
@@ -80,7 +81,7 @@ test.syntax.ansible:
 	cd tests ; ansible-playbook -i inventory test.yml --syntax-check
 
 ## ReadWrite Tests
-test: header requirements test.syntax role test.checkdiff test.idempotency
+test: header requirements test.syntax role checkdiff test.idempotency
 
 test.idempotency:
 ifndef SKIP_IDEMPOTENCY
@@ -97,7 +98,7 @@ else
 	@echo ''
 endif
 
-test.checkdiff:
+checkdiff:
 ifndef SKIP_CHECKDIFF
 	@echo ''
 	@echo '=== Running --check --diff tests'
