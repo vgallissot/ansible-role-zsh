@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 
 ANSIBLE:=$(shell command -v ansible 2> /dev/null)
 ROLE_NAME?="$(shell basename $(CURDIR))"
-DOCKER_IMAGE?=ansible/ansible:fedora26py3
+DOCKER_IMAGE?=vgallissot/fedora-ansible:latest
 
 yml_files:=$(shell find . -name "*.yml")
 json_files:=$(shell find . -name "*.json")

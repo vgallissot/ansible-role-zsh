@@ -2,13 +2,13 @@
 
 - name: install zsh and dependencies
   become: yes
-  include: "os_family/{{ ansible_os_family }}.yml"
+  include_tasks: "os_family/{{ ansible_os_family }}.yml"
 
 - name: use some modules for zsh
-  include: "modules.yml"
+  import_tasks: "modules.yml"
 
 - name: change shell from bash to zsh
   user:
-    name: "{{ item.name }}"
+    name: "{{ item }}"
     shell: /bin/zsh
   with_items: "{{ zsh_users }}"
