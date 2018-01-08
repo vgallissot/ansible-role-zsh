@@ -7,7 +7,7 @@
 - name: use some modules for zsh
   import_tasks: "modules.yml"
 
-- name: change shell from bash to zsh
+- name: change shells to zsh
   user:
     name: "{{ item }}"
     shell: /bin/zsh

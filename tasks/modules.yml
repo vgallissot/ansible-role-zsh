@@ -1,5 +1,26 @@
 ---
-- name: use oh-my-zsh
+
+- name: git clone oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: "{{ zsh_omz_path }}"
+
+# Due to that -> https://github.com/zsh-users/zsh-completions/issues/277
+# it's complicated to load omz in profile.d files
+# ugly workaround using symlinks to have only one zshrc file to manage
+- name: "make {{ zsh_omz_zshrc }}"
+  template:
+    src: zshrc.j2
+    dest: "{{ zsh_omz_zshrc }}"
+
+- name: get defined users homedirs
+  getent:
+    database: passwd
+    split: ":"
+
+- name: "link {{ zsh_omz_zshrc }} to user's zshrc"
+  file:
+    src: "{{ zsh_omz_zshrc }}"
+    dest: "{{ getent_passwd[item][4] }}/.zshrc"
+    state: link
+  with_items: "{{ zsh_users }}"
