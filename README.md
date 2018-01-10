@@ -1,9 +1,9 @@
 Role Name
 =========
 [![license][2i]][2p]
-[![twitter][3i]][3p]
 
-Install zsh with [oh-my-zsh][4]
+Installs zsh with [oh-my-zsh][4] for all users.
+Allows user-wide customizations too.
 
 Description
 -----------
@@ -13,27 +13,36 @@ Nothing too fancy. I tend to use zsh for **everything** under the sun. As such, 
 Role Variables
 --------------
 
-The only variable that needs to be changed is in `defaults/main.yml`; **user.home**. It will install the [oh-my-zsh][4] in the userhome.
+| Name  | Default  | Mandatory  | Description  |
+| :---- |:--------:|:----------:|:------------ |
+| zsh_users | `root` | yes | List of users to whom this role will apply |
+| zsh_custom | `~/.zsh.d` | yes | Path to user's custom zsh directory |
+| zsh_omz_path | `/usr/local/src/oh-my-zsh` | yes | Path where oh-my-zsh will be git cloned |
+| zsh_omz_zshrc | `/etc/oh-my-zsh.zshrc` | yes | Path from whom ~/.zshrc will be linked to for all zsh users |
+
 
 Usage
 -----
 
-Very simple to use. Simply change the role variable listed above and add to your playbook:
+Any of variables above is customizable.  
+You may only need to modify zsh_users list.
 
 ``` yaml
-- hosts: servers
-    roles:
-        - zsh
+- hosts: localhost
+
+  vars:
+    zsh_users:
+      - pi
+
+  roles:
+    - zsh
 ```
 
 Author Information
 ------------------
 
-[Alejandro Baez][1]
+Fork of Alejandro Baez's repo
 
-[1]: https://keybase.io/baez
 [2i]: https://img.shields.io/badge/license-BSD_2-green.svg
 [2p]: ./LICENSE
-[3i]: https://img.shields.io/badge/twitter-a_baez-blue.svg
-[3p]: https://twitter.com/a_baez
 [4]: https://github.com/robbyrussell/oh-my-zsh
