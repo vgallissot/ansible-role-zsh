@@ -4,5 +4,7 @@ zsh_users:
   - root
   - vincent
 
+zsh_custom: ~/.zsh.d
+
 zsh_omz_path: /usr/local/src/oh-my-zsh
 zsh_omz_zshrc: /etc/oh-my-zsh.zshrc

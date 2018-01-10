@@ -45,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM={{ zsh_custom }}
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -85,13 +85,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # history
 
+setopt no_share_history append_history hist_ignore_all_dups hist_reduce_blanks
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+HISTSIZE=100000
+HISTFILESIZE=200000
 
-setopt no_share_history
+# zstyle ':urlglobber' url-other-schema -> disable auto-escape of special characters interpreted by zsh (&, =, ?, etc.)
 
-# zstyle ':urlglobber' url-other-schema -> desactive l'auto-escape des caractères spéciaux interprétés par zsh (les &, =, ?, etc.)
-
-# Go compatible
-export GOPATH=~/go
-export PATH=$PATH:$GOPATH/bin
+# Most of system-wide aliases and stuff are loaded in /etc/profile.d/
+# One should check those scripts first
