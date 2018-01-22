@@ -19,6 +19,7 @@ Role Variables
 | zsh_custom | `~/.zsh.d` | yes | Path to user's custom zsh directory |
 | zsh_omz_path | `/usr/local/src/oh-my-zsh` | yes | Path where oh-my-zsh will be git cloned |
 | zsh_omz_zshrc | `/etc/oh-my-zsh.zshrc` | yes | Path from whom ~/.zshrc will be linked to for all zsh users |
+| zsh_fzf_path | `/usr/local/src/fzf` | yes | Path where fzf will be cloned and binaries linked from |
 
 
 Usage

@@ -7,6 +7,9 @@
 - name: use some modules for zsh
   import_tasks: "oh-my-zsh.yml"
 
+- name: use fzf modules for omz
+  import_tasks: "zsh_omz_fzf.yml"
+
 - name: change shells to zsh
   user:
     name: "{{ item }}"

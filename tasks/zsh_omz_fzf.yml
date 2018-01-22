@@ -1,0 +1,31 @@
+---
+
+# This task could be a dependent role (to support bash)
+# but omz autocompletion doesn't allow fzf one
+# so specific installation for ZSH+OMZ here:
+- name: git clone fzf
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ zsh_fzf_path }}"
+
+- name: "install fzf using embeded script"
+  shell: ./install --bin
+  args:
+    chdir: "{{ zsh_fzf_path }}"
+    creates: "{{ zsh_fzf_path }}/bin/fzf"
+
+- name: "Find binaries created from install command"
+  find:
+    paths: "{{ zsh_fzf_path }}/bin"
+    patterns: "fzf*"
+    file_type: file
+  register: found_binaries
+
+- name: "link {{ zsh_fzf_path }}/bin/* to /usr/local/bin/"
+  file:
+    src: "{{ item.path }}"
+    dest: "/usr/local/bin/{{ item.path | basename }}"
+    state: link
+  with_items: "{{ found_binaries.files }}"
+  when: found_binaries is defined and found_binaries and
+        found_binaries.files is defined and found_binaries.files

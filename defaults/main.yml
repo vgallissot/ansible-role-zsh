@@ -7,3 +7,5 @@ zsh_custom: ~/.zsh.d
 
 zsh_omz_path: /usr/local/src/oh-my-zsh
 zsh_omz_zshrc: /etc/oh-my-zsh.zshrc
+
+zsh_fzf_path: /usr/local/src/fzf
